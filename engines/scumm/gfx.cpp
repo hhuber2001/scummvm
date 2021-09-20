@@ -3358,6 +3358,13 @@ void Gdi::drawStripEGA(byte *dst, int dstPitch, const byte *src, int height) con
 				}
 			}
 		} else {
+			if (color & 0x40) {
+				color = color & 0x3f;
+				_paletteMod = 0;
+			}
+			else {
+				_paletteMod = 16;
+			}
 			run = color >> 4;
 			if (run == 0) {
 				run = *src++;
